@@ -1,0 +1,49 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-deep: #020617;
+  --accent-orange: #FF5500;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-deep) !important;
+  color: #ffffff !important; /* Force white text visibility */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure noise layer doesn't block content */
+.noise-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* Low z-index but above background */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(255, 85, 0, 0.5);
+}
+
+.orange-glow-box {
+  box-shadow: 0 0 60px -12px rgba(255, 85, 0, 0.5);
+}
+
+::selection {
+  background: rgba(255, 85, 0, 0.4);
+  color: #fff;
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Bodhon - Forging the Intelligent Web",
+  "description": "A high-tech agency website specializing in Agentic AI, high-performance web products, and mobile experiences.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
