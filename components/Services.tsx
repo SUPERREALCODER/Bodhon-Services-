@@ -14,6 +14,7 @@ interface ServiceDetail {
   techStack: string[];
   methodology: string;
   color: string;
+  contactMapping: string;
 }
 
 const servicesData: ServiceDetail[] = [
@@ -33,7 +34,8 @@ const servicesData: ServiceDetail[] = [
     ],
     techStack: ['OpenAI / Anthropic', 'LangChain', 'Pinecone', 'Python/FastAPI'],
     methodology: "Research-first approach focusing on cognitive architecture and reliable output validation.",
-    color: "from-orange-600 to-orange-400"
+    color: "from-orange-600 to-orange-400",
+    contactMapping: "Agentic AI Development"
   },
   {
     id: 'web',
@@ -51,7 +53,8 @@ const servicesData: ServiceDetail[] = [
     ],
     techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Vercel / AWS'],
     methodology: "Performance-driven development with a focus on 'Zero-JS' initial loads and progressive enhancement.",
-    color: "from-blue-600 to-cyan-400"
+    color: "from-blue-600 to-cyan-400",
+    contactMapping: "Full-Stack Web Product"
   },
   {
     id: 'mobile',
@@ -69,9 +72,14 @@ const servicesData: ServiceDetail[] = [
     ],
     techStack: ['React Native', 'Expo', 'Reanimated', 'SQLite'],
     methodology: "User-centric design focusing on thumb-zone navigation and hardware-accelerated performance.",
-    color: "from-purple-600 to-pink-400"
+    color: "from-purple-600 to-pink-400",
+    contactMapping: "Mobile Experience"
   }
 ];
+
+interface ServicesProps {
+  onSelectService: (serviceMapping: string) => void;
+}
 
 const ServiceCard: React.FC<{ 
   service: ServiceDetail;
@@ -120,14 +128,12 @@ const ServiceCard: React.FC<{
   );
 };
 
-export const Services: React.FC = () => {
+export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
   const [activeService, setActiveService] = useState<ServiceDetail | null>(null);
 
-  const scrollToContact = () => {
+  const handleStartProject = (serviceMapping: string) => {
     setActiveService(null);
-    setTimeout(() => {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    }, 300);
+    onSelectService(serviceMapping);
   };
 
   return (
@@ -265,7 +271,7 @@ export const Services: React.FC = () => {
 
                   <div className="pt-10 flex flex-col sm:flex-row gap-4">
                     <button 
-                      onClick={scrollToContact}
+                      onClick={() => handleStartProject(activeService.contactMapping)}
                       className="flex-1 py-5 bg-white text-slate-950 rounded-2xl font-black text-lg flex items-center justify-center space-x-3 hover:bg-orange-500 hover:text-white transition-all shadow-xl shadow-white/5 group"
                     >
                       <span>Start {activeService.title} Project</span>

@@ -1,9 +1,39 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram, ChevronDown, DollarSign } from 'lucide-react';
 
-export const ContactSection: React.FC = () => {
+interface ContactProps {
+  initialPricingModel?: string;
+  initialService?: string;
+}
+
+export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, initialService }) => {
+  const [pricingPref, setPricingPref] = useState(initialPricingModel || 'Discuss during consultation');
+  const [servicePref, setServicePref] = useState(initialService || 'Agentic AI Development');
+  const [budget, setBudget] = useState('');
+
+  // Sync internal state if props change (e.g. user clicks a model in Pricing or Project in Services)
+  useEffect(() => {
+    if (initialPricingModel) {
+      setPricingPref(initialPricingModel);
+    }
+  }, [initialPricingModel]);
+
+  useEffect(() => {
+    if (initialService) {
+      setServicePref(initialService);
+    }
+  }, [initialService]);
+
+  const handlePricingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setPricingPref(e.target.value);
+  };
+
+  const handleServiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setServicePref(e.target.value);
+  };
+
   return (
     <section id="contact" className="py-24 md:py-40 px-6 bg-slate-950 relative overflow-hidden">
       {/* Background radial glow */}
@@ -68,46 +98,110 @@ export const ContactSection: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             className="p-10 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[3rem] shadow-2xl relative"
           >
-            <form className="space-y-8">
+            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-400 uppercase tracking-widest ml-1">Name</label>
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Name</label>
                   <input 
                     type="text" 
                     placeholder="John Doe"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700" 
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 font-medium" 
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-400 uppercase tracking-widest ml-1">Email</label>
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Email</label>
                   <input 
                     type="email" 
                     placeholder="john@example.com"
-                    className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700" 
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 font-medium" 
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest ml-1">Service Required</label>
-                <select className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors appearance-none">
-                  <option className="bg-slate-900">Agentic AI Development</option>
-                  <option className="bg-slate-900">Full-Stack Web Product</option>
-                  <option className="bg-slate-900">Mobile Experience</option>
-                  <option className="bg-slate-900">Other</option>
-                </select>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2 relative">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Service Required</label>
+                  <select 
+                    value={servicePref}
+                    onChange={handleServiceChange}
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors appearance-none cursor-pointer font-medium"
+                  >
+                    <option className="bg-slate-900" value="Agentic AI Development">Agentic AI Development</option>
+                    <option className="bg-slate-900" value="Full-Stack Web Product">Full-Stack Web Product</option>
+                    <option className="bg-slate-900" value="Mobile Experience">Mobile Experience</option>
+                    <option className="bg-slate-900" value="Strategic Consulting">Strategic Consulting</option>
+                  </select>
+                  <ChevronDown className="absolute bottom-4 right-0 text-slate-500 pointer-events-none" size={16} />
+                </div>
+
+                <div className="space-y-2 relative">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Pricing Preference</label>
+                  <select 
+                    value={pricingPref}
+                    onChange={handlePricingChange}
+                    className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors appearance-none cursor-pointer font-medium"
+                  >
+                    <option className="bg-slate-900" value="Hourly Basis">Hourly Basis</option>
+                    <option className="bg-slate-900" value="Project-Based (Fixed)">Project-Based (Fixed)</option>
+                    <option className="bg-slate-900" value="Hybrid Approach">Hybrid Approach</option>
+                    <option className="bg-slate-900" value="Discuss during consultation">Discuss during consultation</option>
+                    <option className="bg-slate-900" value="Help me decide">Help me decide</option>
+                  </select>
+                  <ChevronDown className="absolute bottom-4 right-0 text-slate-500 pointer-events-none" size={16} />
+                </div>
               </div>
 
+              {/* Dynamic Pricing Input */}
+              <AnimatePresence mode="wait">
+                {pricingPref === 'Project-Based (Fixed)' && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="space-y-2"
+                  >
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Proposed Budget ($)</label>
+                    <div className="relative">
+                      <DollarSign className="absolute left-0 bottom-4 text-orange-500" size={18} />
+                      <input 
+                        type="number" 
+                        value={budget}
+                        onChange={(e) => setBudget(e.target.value)}
+                        placeholder="Enter your project budget"
+                        className="w-full bg-transparent border-b border-white/10 py-4 pl-7 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 font-medium" 
+                      />
+                    </div>
+                  </motion.div>
+                )}
+
+                {pricingPref === 'Hourly Basis' && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="p-4 bg-orange-500/10 border border-orange-500/20 rounded-2xl flex items-center space-x-4"
+                  >
+                    <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white shrink-0">
+                      <DollarSign size={20} />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-sm">Standard Rate Applied</p>
+                      <p className="text-slate-400 text-xs font-medium">Hourly engagement starts at <span className="text-orange-500 font-black">$10/hour</span></p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400 uppercase tracking-widest ml-1">Your Vision</label>
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Your Vision</label>
                 <textarea 
-                  rows={4}
-                  placeholder="Tell us about your project..."
-                  className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 resize-none"
+                  rows={3}
+                  placeholder="Tell us about your project or specific requirements..."
+                  className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 resize-none font-medium"
                 ></textarea>
               </div>
 
-              <button className="w-full py-5 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-2xl font-black text-lg hover:shadow-[0_0_30px_rgba(255,85,0,0.4)] transition-all transform hover:-translate-y-1">
+              <button className="w-full py-5 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-2xl font-black text-lg hover:shadow-[0_0_30px_rgba(255,85,0,0.4)] transition-all transform hover:-translate-y-1 active:scale-[0.98]">
                 Send Message
               </button>
             </form>
