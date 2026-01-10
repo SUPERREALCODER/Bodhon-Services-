@@ -1,9 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
 import { Projects } from './components/Projects';
+import { About } from './components/About';
 import { ContactSection } from './components/Contact';
 import { Footer } from './components/Footer';
 import { BackgroundEffects } from './components/BackgroundEffects';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Hero />
         <Services />
         <Projects />
+        <About />
         <ContactSection />
       </main>
       <Footer />

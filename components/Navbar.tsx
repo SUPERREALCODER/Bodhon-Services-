@@ -16,9 +16,13 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Services', href: '#services' },
     { name: 'Portfolio', href: '#projects' },
-    { name: 'AI Labs', href: '#labs' },
+    { name: 'Team', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ];
+
+  const handleGetStarted = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <nav 
@@ -33,7 +37,7 @@ export const Navbar: React.FC = () => {
       }`}>
         
         {/* Logo */}
-        <div className="flex items-center space-x-3 cursor-pointer group">
+        <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="w-10 h-10 bg-brand-orange rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12 group-hover:scale-110 orange-glow-box">
             <span className="text-white font-black text-2xl">B</span>
           </div>
@@ -55,7 +59,10 @@ export const Navbar: React.FC = () => {
           
           <div className="h-6 w-px bg-white/10" />
           
-          <button className="bg-white text-slate-950 px-6 py-2.5 rounded-xl text-sm font-black hover:bg-brand-orange hover:text-white transition-all flex items-center space-x-2 active:scale-95 shadow-lg shadow-white/5">
+          <button 
+            onClick={handleGetStarted}
+            className="bg-white text-slate-950 px-6 py-2.5 rounded-xl text-sm font-black hover:bg-brand-orange hover:text-white transition-all flex items-center space-x-2 active:scale-95 shadow-lg shadow-white/5"
+          >
             <span>Get Started</span>
             <ArrowUpRight size={16} />
           </button>
@@ -91,7 +98,10 @@ export const Navbar: React.FC = () => {
               </a>
             ))}
             <div className="pt-6 border-t border-white/10 flex flex-col space-y-4">
-               <button className="bg-brand-orange text-white py-5 rounded-2xl font-black text-lg">
+               <button 
+                 onClick={() => { setMobileMenuOpen(false); handleGetStarted(); }}
+                 className="bg-brand-orange text-white py-5 rounded-2xl font-black text-lg"
+                >
                  Book a Consultation
                </button>
                <div className="flex justify-center space-x-6 text-slate-500">

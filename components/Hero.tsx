@@ -44,6 +44,14 @@ export const Hero: React.FC = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
 
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToPortfolio = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pb-20 pt-10 bg-slate-950">
       
@@ -115,7 +123,10 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <button className="group relative w-full sm:w-auto px-12 py-6 bg-[#FF5500] text-white rounded-2xl font-black text-xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,85,0,0.6)] overflow-hidden">
+          <button 
+            onClick={scrollToContact}
+            className="group relative w-full sm:w-auto px-12 py-6 bg-[#FF5500] text-white rounded-2xl font-black text-xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,85,0,0.6)] overflow-hidden"
+          >
             <span className="relative z-10 flex items-center justify-center space-x-2">
               <span>Book a Strategy Call</span>
               <ChevronRight size={22} className="group-hover:translate-x-1 transition-transform" />
@@ -123,7 +134,10 @@ export const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12" />
           </button>
           
-          <button className="w-full sm:w-auto px-12 py-6 glass text-white rounded-2xl font-black text-xl hover:bg-white/10 transition-all flex items-center justify-center space-x-3 group border border-white/20 active:scale-95">
+          <button 
+            onClick={scrollToPortfolio}
+            className="w-full sm:w-auto px-12 py-6 glass text-white rounded-2xl font-black text-xl hover:bg-white/10 transition-all flex items-center justify-center space-x-3 group border border-white/20 active:scale-95"
+          >
             <Play size={20} className="fill-white group-hover:scale-110 transition-transform" />
             <span>View Our Craft</span>
           </button>
