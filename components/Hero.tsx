@@ -144,53 +144,9 @@ export const Hero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Floating UI Elements (Explicit z-20) */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="hidden lg:block absolute bottom-24 left-24 z-20"
-      >
-        <div className="glass p-6 rounded-[2rem] border border-white/10 space-y-4 max-w-[220px] shadow-2xl animate-float">
-          <div className="flex items-center space-x-3">
-             <div className="w-10 h-10 rounded-xl bg-brand-orange/20 flex items-center justify-center text-brand-orange border border-brand-orange/30">
-                <Cpu size={20} />
-             </div>
-             <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Autonomous Core</div>
-          </div>
-          <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-             <motion.div 
-               animate={{ width: ['0%', '70%', '40%', '90%'] }} 
-               transition={{ duration: 5, repeat: Infinity }}
-               className="h-full bg-brand-orange shadow-[0_0_8px_#FF5500]" 
-             />
-          </div>
-          <p className="text-[12px] text-slate-300 leading-snug">Agents actively processing real-world data streams.</p>
-        </div>
-      </motion.div>
+     
 
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1 }}
-        className="hidden lg:block absolute top-1/3 right-24 z-20"
-      >
-        <div className="glass p-6 rounded-[2rem] border border-white/10 space-y-4 max-w-[220px] shadow-2xl animate-float [animation-delay:2s]">
-          <div className="flex items-center space-x-3">
-             <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 border border-blue-400/30">
-                <Globe size={20} />
-             </div>
-             <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Global Scale</div>
-          </div>
-          <div className="flex -space-x-3">
-             {[1,2,3].map(i => (
-               <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center text-[10px] font-bold text-white">U{i}</div>
-             ))}
-             <div className="w-8 h-8 rounded-full border-2 border-slate-950 bg-brand-orange flex items-center justify-center text-[10px] font-black text-white shadow-lg">+12k</div>
-          </div>
-          <p className="text-[12px] text-slate-300 leading-snug">Serving 50+ enterprise clients globally.</p>
-        </div>
-      </motion.div>
+      
     </section>
   );
 };
