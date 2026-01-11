@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, ExternalLink, ShieldCheck, Cpu, Code2 } from 'lucide-react';
+import { Github, Linkedin, Twitter, ExternalLink, ShieldCheck, Cpu, Code2, BrainCircuit, TrendingUp, MessageSquare, Zap, Fingerprint } from 'lucide-react';
 
 interface TeamMember {
   name: string;
@@ -15,16 +15,18 @@ interface TeamMember {
     twitter?: string;
   };
   icon: React.ReactNode;
+  accent: string;
 }
 
 const team: TeamMember[] = [
   {
-    name: "Arindam Dutta",
+    name: "Debabrata Ghosh",
     role: "Founding Architect",
     shortBio: "Architecting the bridge between logic and experience.",
-    description: "With over a decade in systems design, Arindam leads the technical vision at Bodhon, specializing in high-performance architectures and agentic AI integration.",
+    description: "The technical visionary. He bridges the gap between business logic and Agentic AI, creating systems that automate complex workflows and drive intelligent decision-making.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&auto=format&fit=crop",
     icon: <Cpu size={20} />,
+    accent: "text-orange-500",
     socials: {
       github: "https://github.com",
       linkedin: "https://linkedin.com",
@@ -32,27 +34,54 @@ const team: TeamMember[] = [
     }
   },
   {
-    name: "Srijita Roy",
-    role: "Head of AI Design",
-    shortBio: "Transforming complex LLMs into intuitive interfaces.",
-    description: "Srijita focuses on Human-AI interaction (HAII), ensuring that our agentic solutions are not just smart, but delightful and accessible for every user.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&h=256&auto=format&fit=crop",
-    icon: <ShieldCheck size={20} />,
-    socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com"
-    }
-  },
-  {
-    name: "Vikram Mehta",
-    role: "Lead Systems Engineer",
-    shortBio: "Master of the invisible engine.",
-    description: "Vikram ensures our products scale infinitely. His expertise lies in edge computing, real-time data synchronization, and robust backend reliability.",
+    name: "Krish Gupta",
+    role: "Head of Engineering",
+    shortBio: "Master of high-performance fluid experiences.",
+    description: "Translates visions into fluid digital reality. He leads the development of high-performance mobile apps and scalable web platforms with a focus on 60FPS precision.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&h=256&auto=format&fit=crop",
     icon: <Code2 size={20} />,
+    accent: "text-blue-500",
     socials: {
       github: "https://github.com",
+      linkedin: "https://linkedin.com",
+      twitter: "https://x.com"
+    }
+  },
+  {
+    name: "Sajid",
+    role: "Growth Strategist",
+    shortBio: "Scaling impact through data-driven logic.",
+    description: "Ensures market impact. He integrates data-driven marketing strategies and SEO directly into the product lifecycle to maximize ROI and visibility.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&h=256&auto=format&fit=crop",
+    icon: <TrendingUp size={20} />,
+    accent: "text-green-500",
+    socials: {
+      linkedin: "https://linkedin.com",
+      twitter: "https://x.com"
+    }
+  },
+  {
+    name: "Pratham Jaiswal",
+    role: "Security & Infra Lead",
+    shortBio: "Hardening the autonomous perimeter.",
+    description: "Guarantees data sovereignty. He utilizes blockchain principles and advanced cryptography to build secure, tamper-proof architectures for sensitive client data.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&h=256&auto=format&fit=crop",
+    icon: <ShieldCheck size={20} />,
+    accent: "text-purple-500",
+    socials: {
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    }
+  },
+  {
+    name: "Muzzafar Abbas",
+    role: "Head of Research & Relations",
+    shortBio: "The bridge between complex tech and the consumer.",
+    description: "He leads deep user research and manages strategic client relations to ensure perfect product alignment and long-term partnership success.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&h=256&auto=format&fit=crop",
+    icon: <MessageSquare size={20} />,
+    accent: "text-cyan-500",
+    socials: {
       linkedin: "https://linkedin.com",
       twitter: "https://x.com"
     }
@@ -73,7 +102,7 @@ export const About: React.FC = () => {
               whileInView={{ opacity: 1 }}
               className="text-brand-orange font-bold tracking-[0.3em] uppercase text-sm mb-6"
             >
-              The Collective
+              The Core Team
             </motion.p>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -84,17 +113,17 @@ export const About: React.FC = () => {
             </motion.h2>
           </div>
           <p className="text-slate-400 text-lg max-w-sm">
-            We are a group of engineers and designers obsessed with the intersection of AI and human experience.
+            We are a group of specialized engineers and strategists obsessed with the intersection of AI and human experience.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {team.map((member, idx) => (
             <motion.div
               key={member.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
+              transition={{ delay: idx * 0.05 }}
               viewport={{ once: true }}
               className="group relative"
             >
@@ -106,7 +135,7 @@ export const About: React.FC = () => {
                     <div className="w-24 h-24 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700 ring-1 ring-white/10 group-hover:ring-brand-orange/50">
                       <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                     </div>
-                    <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-slate-900 border border-white/10 rounded-xl flex items-center justify-center text-brand-orange shadow-xl">
+                    <div className={`absolute -bottom-2 -right-2 w-10 h-10 bg-slate-900 border border-white/10 rounded-xl flex items-center justify-center ${member.accent} shadow-xl`}>
                       {member.icon}
                     </div>
                   </div>
@@ -133,7 +162,7 @@ export const About: React.FC = () => {
                 {/* Content */}
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-white mb-1">{member.name}</h3>
-                  <div className="text-brand-orange font-black text-[10px] uppercase tracking-widest mb-4">
+                  <div className={`${member.accent} font-black text-[10px] uppercase tracking-widest mb-4`}>
                     {member.role}
                   </div>
                   <p className="text-white font-bold text-sm italic mb-4 opacity-90">
@@ -152,6 +181,27 @@ export const About: React.FC = () => {
               </div>
             </motion.div>
           ))}
+          
+          {/* Join Us Block */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="group relative"
+          >
+            <div className="bg-brand-orange/10 rounded-[3rem] p-8 border border-brand-orange/20 h-full flex flex-col justify-center items-center text-center space-y-6">
+              <div className="w-20 h-20 rounded-full bg-brand-orange/20 flex items-center justify-center text-brand-orange animate-pulse">
+                <Zap size={32} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-white mb-2">Join the Mission</h3>
+                <p className="text-slate-400 text-sm mb-6">We're always looking for brilliant minds to join our collective.</p>
+                <button className="px-6 py-3 bg-brand-orange text-white rounded-xl font-bold text-sm hover:scale-105 transition-all">
+                  View Openings
+                </button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
