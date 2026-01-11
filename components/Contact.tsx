@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Instagram, ChevronDown, DollarSign } from 'lucide-react';
+import { Mail, MapPin, Github, Linkedin, Youtube, ChevronDown, DollarSign } from 'lucide-react';
 
 interface ContactProps {
   initialPricingModel?: string;
@@ -34,6 +34,12 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
     setServicePref(e.target.value);
   };
 
+  const socials = [
+    { Icon: Github, href: "https://github.com/bodhontech" },
+    { Icon: Linkedin, href: "https://www.linkedin.com/company/bodhon" },
+    { Icon: Youtube, href: "https://youtube.com/@bodhon-hq?si=5pVwo78MT8VmUYIJ" },
+  ];
+
   return (
     <section id="contact" className="py-24 md:py-40 px-6 bg-slate-950 relative overflow-hidden">
       {/* Background radial glow */}
@@ -63,15 +69,19 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
             </p>
 
             <div className="space-y-8 mb-12">
-              <div className="flex items-start space-x-6 group">
-                <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-orange-500 border border-white/5 group-hover:bg-orange-500 group-hover:text-white transition-all">
+              <a 
+                href="mailto:bodhon00@gmail.com" 
+                className="flex items-start space-x-6 group cursor-pointer"
+              >
+                <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-orange-500 border border-white/5 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-lg group-hover:shadow-orange-500/20">
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">Email us</h4>
-                  <p className="text-slate-400">hello@bodhon.in</p>
+                  <h4 className="text-white font-bold text-lg mb-1 group-hover:text-orange-500 transition-colors">Email us</h4>
+                  <p className="text-slate-400 group-hover:text-slate-200 transition-colors">bodhon00@gmail.com</p>
                 </div>
-              </div>
+              </a>
+
               <div className="flex items-start space-x-6 group">
                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-orange-500 border border-white/5 group-hover:bg-orange-500 group-hover:text-white transition-all">
                   <MapPin size={24} />
@@ -84,10 +94,16 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
             </div>
 
             <div className="flex space-x-4">
-              {[Twitter, Github, Linkedin, Instagram].map((Icon, idx) => (
-                <button key={idx} className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-slate-400 hover:text-orange-500 hover:bg-orange-500/10 transition-all border border-white/5">
+              {socials.map(({ Icon, href }, idx) => (
+                <a 
+                  key={idx} 
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-slate-400 hover:text-orange-500 hover:bg-orange-500/10 transition-all border border-white/5"
+                >
                   <Icon size={20} />
-                </button>
+                </a>
               ))}
             </div>
           </div>
