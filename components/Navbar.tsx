@@ -39,8 +39,13 @@ export const Navbar: React.FC = () => {
         
         {/* Logo */}
         <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="w-10 h-10 bg-brand-orange rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12 group-hover:scale-110 orange-glow-box">
-            <span className="text-white font-black text-2xl">B</span>
+          <div className="w-12 h-12 relative flex items-center justify-center transition-transform group-hover:rotate-6 group-hover:scale-110">
+            <div className="absolute inset-0 bg-brand-orange/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <img 
+              src="assets/logo.jpg" 
+              alt="Bodhon Phoenix Logo" 
+              className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(255,85,0,0.5)] rounded-lg"
+            />
           </div>
           <span className="text-2xl font-black tracking-tighter text-white font-heading">Bodhon</span>
         </div>

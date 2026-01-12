@@ -8,9 +8,9 @@ export const Footer: React.FC = () => {
     <footer className="py-12 px-6 border-t border-white/5 bg-slate-950">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex flex-col items-center md:items-start">
-          <div className="flex items-center space-x-2 mb-4">
-            <div className="w-6 h-6 bg-orange-600 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-sm">B</span>
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="w-8 h-8 flex items-center justify-center">
+              <img src="assets/logo.jpg" alt="Bodhon Phoenix" className="w-full h-full object-contain rounded-md" />
             </div>
             <span className="text-xl font-bold text-white tracking-tight">Bodhon</span>
           </div>

@@ -38,6 +38,7 @@ const projectsData: Project[] = [
       { label: 'Efficiency', value: '+210%' }
     ],
     color: 'bg-orange-600',
+    // Example video placeholder - in real app, user would provide their github mp4 link
     videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screen-close-up-34440-large.mp4'
   },
   {
