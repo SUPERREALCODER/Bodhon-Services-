@@ -45,7 +45,7 @@ const projectsData: Project[] = [
     title: 'The Pandel',
     category: 'Social Experience',
     description: 'Innovative social platform connecting artists with direct-to-consumer NFT marketplaces.',
-    tags: ['Web3', 'Social', 'Creator Economy'],
+    tags: [ 'Social'],
     challenge: 'Artists struggled with high gas fees and lack of community engagement on traditional marketplaces.',
     solution: 'Built a Layer-2 based social network that allows for instant "social minting" and direct fan-to-artist engagement loops.',
     results: [
@@ -175,7 +175,7 @@ export const Projects: React.FC = () => {
                   </span>
                 )}
               </div>
-              <h3 className="text-4xl font-bold text-white mb-4">Homeasy</h3>
+              <h3 className="text-4xl font-bold text-white mb-4">HomeX</h3>
               <p className="text-slate-300 max-w-lg mb-6">Automating the housing market with agentic workflows.</p>
               <div className="flex items-center space-x-4">
                 <button className="flex items-center space-x-2 px-6 py-2 bg-white text-slate-950 rounded-xl font-bold">
@@ -189,7 +189,7 @@ export const Projects: React.FC = () => {
           {/* Secondary Project: The Pandel */}
           <motion.div 
             whileHover={{ y: -5 }}
-            className="md:col-span-4 md:row-span-3 group relative bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden cursor-pointer"
+            className="md:col-span-4 md:row-span-4 group relative bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden cursor-pointer"
             onClick={() => setSelectedIdx(1)}
           >
             <div className="absolute inset-0 z-0">
@@ -205,8 +205,8 @@ export const Projects: React.FC = () => {
             
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 p-8 flex flex-col justify-end">
               <span className="text-blue-500 font-bold text-xs tracking-widest uppercase mb-2">Social Experience</span>
-              <h3 className="text-2xl font-bold text-white mb-2">The Pandel</h3>
-              <p className="text-slate-400 text-sm mb-6">Innovative social platform for creators.</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Homeasy</h3>
+              <p className="text-slate-400 text-sm mb-6">Navigation Platform for Pandel Hoppers</p>
               <button className="flex items-center space-x-2 text-white font-bold hover:text-blue-500 transition-colors">
                 <span>View Case Study</span>
                 <ExternalLink size={16} />
@@ -244,6 +244,51 @@ export const Projects: React.FC = () => {
             <div className="relative z-10 p-8 h-full flex flex-col justify-center items-center text-center space-y-2">
               <div className="text-purple-400 text-[10px] font-bold uppercase tracking-widest">Featured Demo</div>
               <h3 className="text-xl font-bold text-white">Quantum Analytics</h3>
+              <div className="flex items-center text-slate-500 text-xs font-bold">
+                 <PlayCircle size={12} className="mr-1" /> Watch Prototype
+              </div>
+            </div>
+          </motion.div>
+
+
+          {/* the pandel Project - Tag Highlight */}
+           <motion.div 
+            whileHover={{ y: -5 }}
+            className="md:col-span-4 md:row-span-1 group relative bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden cursor-pointer"
+            onClick={() => setSelectedIdx(2)}
+          >
+            {projectsData[2].videoUrl && (
+              <video 
+                src={projectsData[2].videoUrl} 
+                autoPlay muted loop playsInline 
+                className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity"
+              />
+            )}
+            <div className="relative z-10 p-8 h-full flex flex-col justify-center items-center text-center space-y-2">
+              <div className="text-purple-400 text-[10px] font-bold uppercase tracking-widest">Featured Demo</div>
+              <h3 className="text-xl font-bold text-white">The Pandel </h3>
+              <div className="flex items-center text-slate-500 text-xs font-bold">
+                 <PlayCircle size={12} className="mr-1" /> Watch Prototype
+              </div>
+            </div>
+          </motion.div>
+
+          {/* nexus sales agent */}
+           <motion.div 
+            whileHover={{ y: -5 }}
+            className="md:col-span-4 md:row-span-1 group relative bg-slate-900 border border-white/10 rounded-[2.5rem] overflow-hidden cursor-pointer"
+            onClick={() => setSelectedIdx(2)}
+          >
+            {projectsData[2].videoUrl && (
+              <video 
+                src={projectsData[2].videoUrl} 
+                autoPlay muted loop playsInline 
+                className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity"
+              />
+            )}
+            <div className="relative z-10 p-8 h-full flex flex-col justify-center items-center text-center space-y-2">
+              <div className="text-purple-400 text-[10px] font-bold uppercase tracking-widest">Featured Demo</div>
+              <h3 className="text-xl font-bold text-white">Nexus Sales Agent</h3>
               <div className="flex items-center text-slate-500 text-xs font-bold">
                  <PlayCircle size={12} className="mr-1" /> Watch Prototype
               </div>
