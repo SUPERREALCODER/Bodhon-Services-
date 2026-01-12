@@ -42,7 +42,7 @@ export const Navbar: React.FC = () => {
           <div className="w-12 h-12 relative flex items-center justify-center transition-transform group-hover:rotate-6 group-hover:scale-110">
             <div className="absolute inset-0 bg-brand-orange/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <img 
-              src="assets/logo.jpg" 
+              src="../assets/logo.png" 
               alt="Bodhon Phoenix Logo" 
               className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(255,85,0,0.5)] rounded-lg"
             />

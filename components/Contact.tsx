@@ -40,6 +40,38 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
     { Icon: Youtube, href: "https://youtube.com/@bodhon-hq?si=5pVwo78MT8VmUYIJ" },
   ];
 
+//contact form code
+//   export default function ContactForm() {
+  const [result, setResult] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    console.log("Submitting form...");
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    // Use Vite env var for API key (set VITE_WEB3FORMS_KEY in .env.local or your environment)
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+    if (!accessKey) {
+      console.warn('Missing Web3Forms API key: set VITE_WEB3FORMS_KEY in your env');
+      setResult('Error: missing API key');
+      return;
+    }
+    formData.append('access_key', accessKey);
+
+   
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await response.json();
+    setResult(data.success ? "Success!" : "Error");
+  };
+
+
   return (
     <section id="contact" className="py-24 md:py-40 px-6 bg-slate-950 relative overflow-hidden">
       {/* Background radial glow */}
@@ -114,22 +146,26 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
             whileInView={{ opacity: 1, scale: 1 }}
             className="p-10 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[3rem] shadow-2xl relative"
           >
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-8"  onSubmit={onSubmit}>
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Name</label>
                   <input 
+                    name="name"
                     type="text" 
                     placeholder="John Doe"
                     className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 font-medium" 
+                    required
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Email</label>
                   <input 
+                    name="email"
                     type="email" 
                     placeholder="john@example.com"
                     className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 font-medium" 
+                    required
                   />
                 </div>
               </div>
@@ -137,10 +173,10 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2 relative">
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Service Required</label>
-                  <select 
-                    value={servicePref}
+                  <select                     name="service"                    value={servicePref}
                     onChange={handleServiceChange}
                     className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors appearance-none cursor-pointer font-medium"
+                  required
                   >
                     <option className="bg-slate-900" value="Agentic AI Development">Agentic AI Development</option>
                     <option className="bg-slate-900" value="Full-Stack Web Product">Full-Stack Web Product</option>
@@ -152,10 +188,10 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
 
                 <div className="space-y-2 relative">
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Pricing Preference</label>
-                  <select 
-                    value={pricingPref}
+                  <select                     name="pricing"                    value={pricingPref}
                     onChange={handlePricingChange}
                     className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors appearance-none cursor-pointer font-medium"
+                  required
                   >
                     <option className="bg-slate-900" value="Hourly Basis">Hourly Basis</option>
                     <option className="bg-slate-900" value="Project-Based (Fixed)">Project-Based (Fixed)</option>
@@ -179,12 +215,12 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Proposed Budget ($)</label>
                     <div className="relative">
                       <DollarSign className="absolute left-0 bottom-4 text-orange-500" size={18} />
-                      <input 
-                        type="number" 
+                      <input                         name="budget"                        type="number" 
                         value={budget}
                         onChange={(e) => setBudget(e.target.value)}
                         placeholder="Enter your project budget"
                         className="w-full bg-transparent border-b border-white/10 py-4 pl-7 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 font-medium" 
+                        required
                       />
                     </div>
                   </motion.div>
@@ -211,15 +247,39 @@ export const ContactSection: React.FC<ContactProps> = ({ initialPricingModel, in
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Your Vision</label>
                 <textarea 
+                  name="message"
                   rows={3}
                   placeholder="Tell us about your project or specific requirements..."
                   className="w-full bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-orange-500 transition-colors placeholder:text-slate-700 resize-none font-medium"
+                 required
                 ></textarea>
               </div>
 
-              <button className="w-full py-5 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-2xl font-black text-lg hover:shadow-[0_0_30px_rgba(255,85,0,0.4)] transition-all transform hover:-translate-y-1 active:scale-[0.98]">
-                Send Message
-              </button>
+              <div>
+                {result && (
+                  <div aria-live="polite" className={`mb-4 text-sm font-bold ${result.startsWith('Success') ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {result}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-5 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-2xl font-black text-lg transition-all transform ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-[0_0_30px_rgba(255,85,0,0.4)] hover:-translate-y-1 active:scale-[0.98]'}`}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send Message'
+                  )}
+                </button>
+              </div>
             </form>
           </motion.div>
 

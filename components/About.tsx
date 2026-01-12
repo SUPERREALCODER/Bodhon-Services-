@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, ExternalLink, ShieldCheck, Cpu, Code2, BrainCircuit, TrendingUp, MessageSquare, Zap, Fingerprint } from 'lucide-react';
+import { Github, Linkedin, ExternalLink, ShieldCheck, Cpu, Code2, BrainCircuit, TrendingUp, MessageSquare, Zap, Fingerprint } from 'lucide-react';
 
 interface TeamMember {
   name: string;
@@ -24,13 +24,13 @@ const team: TeamMember[] = [
     role: "Founding Architect",
     shortBio: "Architecting the bridge between logic and experience.",
     description: "The technical visionary. He bridges the gap between business logic and Agentic AI, creating systems that automate complex workflows and drive intelligent decision-making.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&auto=format&fit=crop",
+    image: "../assets/deba.jpg",
     icon: <Cpu size={20} />,
     accent: "text-orange-500",
     socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com"
+      github: "https://github.com/SUPERREALCODER",
+      linkedin: "https://www.linkedin.com/in/superrealcoder/",
+    
     }
   },
   {
@@ -38,13 +38,13 @@ const team: TeamMember[] = [
     role: "Head of Engineering",
     shortBio: "Master of high-performance fluid experiences.",
     description: "Translates visions into fluid digital reality. He leads the development of high-performance mobile apps and scalable web platforms with a focus on 60FPS precision.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&h=256&auto=format&fit=crop",
+    image: "../assets/krish.png",
     icon: <Code2 size={20} />,
     accent: "text-blue-500",
     socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      twitter: "https://x.com"
+      github: "https://github.com/Draxox",
+      linkedin: "https://www.linkedin.com/in/krishdrax/",
+      
     }
   },
   {
@@ -65,12 +65,12 @@ const team: TeamMember[] = [
     role: "Security & Infra Lead",
     shortBio: "Hardening the autonomous perimeter.",
     description: "Guarantees data sovereignty. He utilizes blockchain principles and advanced cryptography to build secure, tamper-proof architectures for sensitive client data.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&h=256&auto=format&fit=crop",
+    image: "../assets/pratham.png",
     icon: <ShieldCheck size={20} />,
     accent: "text-purple-500",
     socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com"
+      github: "https://github.com/pantha704",
+      linkedin: "https://www.linkedin.com/in/pantha704/"
     }
   },
   {
@@ -112,9 +112,7 @@ export const About: React.FC = () => {
               Minds Behind the <br /> Intelligent Web.
             </motion.h2>
           </div>
-          <p className="text-slate-400 text-lg max-w-sm">
-            We are a group of specialized engineers and strategists obsessed with the intersection of AI and human experience.
-          </p>
+         
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -151,11 +149,6 @@ export const About: React.FC = () => {
                         <Linkedin size={18} />
                       </a>
                     )}
-                    {member.socials.twitter && (
-                      <a href={member.socials.twitter} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-500 hover:text-white hover:bg-white/10 transition-all">
-                        <Twitter size={18} />
-                      </a>
-                    )}
                   </div>
                 </div>
 
@@ -176,14 +169,14 @@ export const About: React.FC = () => {
                 {/* Footer Link */}
                 <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between text-slate-500 group-hover:text-brand-orange transition-colors">
                   <span className="text-[10px] font-black uppercase tracking-widest">Connect</span>
-                  <ExternalLink size={14} />
+                 <a href={member.socials.linkedin} target="_blank" rel="noreferrer"><ExternalLink size={14} /></a>
                 </div>
               </div>
             </motion.div>
           ))}
           
           {/* Join Us Block */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -201,7 +194,7 @@ export const About: React.FC = () => {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
